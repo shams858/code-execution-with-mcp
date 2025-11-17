@@ -1,0 +1,527 @@
+{
+    "result": {
+        "tools": [
+            {
+                "name": "list_records",
+                "description": "List records from a table",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "baseId": {
+                            "type": "string",
+                            "description": "The ID of the base"
+                        },
+                        "tableId": {
+                            "type": "string",
+                            "description": "The ID or name of the table"
+                        },
+                        "view": {
+                            "type": "string",
+                            "description": "The name or ID of a view in the table"
+                        },
+                        "maxRecords": {
+                            "type": "number",
+                            "description": "The maximum total number of records that will be returned"
+                        },
+                        "filterByFormula": {
+                            "type": "string",
+                            "description": "A formula used to filter records"
+                        },
+                        "sort": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "field": {
+                                        "type": "string"
+                                    },
+                                    "direction": {
+                                        "type": "string",
+                                        "enum": [
+                                            "asc",
+                                            "desc"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "field"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "description": "A list of sort objects that specifies how the records will be ordered"
+                        }
+                    },
+                    "required": [
+                        "baseId",
+                        "tableId"
+                    ],
+                    "additionalProperties": false,
+                    "$schema": "http://json-schema.org/draft-07/schema#"
+                }
+            },
+            {
+                "name": "search_records",
+                "description": "Search for records containing specific text",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "baseId": {
+                            "type": "string",
+                            "description": "The ID of the base"
+                        },
+                        "tableId": {
+                            "type": "string",
+                            "description": "The ID or name of the table"
+                        },
+                        "searchTerm": {
+                            "type": "string",
+                            "description": "The text to search for"
+                        },
+                        "fieldIds": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "description": "Optional array of field IDs to search in"
+                        },
+                        "maxRecords": {
+                            "type": "number",
+                            "description": "The maximum total number of records that will be returned"
+                        },
+                        "view": {
+                            "type": "string",
+                            "description": "The name or ID of a view in the table"
+                        }
+                    },
+                    "required": [
+                        "baseId",
+                        "tableId",
+                        "searchTerm"
+                    ],
+                    "additionalProperties": false,
+                    "$schema": "http://json-schema.org/draft-07/schema#"
+                }
+            },
+            {
+                "name": "list_bases",
+                "description": "List all accessible Airtable bases",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {},
+                    "additionalProperties": false,
+                    "$schema": "http://json-schema.org/draft-07/schema#"
+                }
+            },
+            {
+                "name": "list_tables",
+                "description": "List all tables in a specific base",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "baseId": {
+                            "type": "string",
+                            "description": "The ID of the base"
+                        },
+                        "detailLevel": {
+                            "type": "string",
+                            "enum": [
+                                "tableIdentifiersOnly",
+                                "identifiersOnly",
+                                "full"
+                            ],
+                            "default": "full",
+                            "description": "Level of detail to return"
+                        }
+                    },
+                    "required": [
+                        "baseId"
+                    ],
+                    "additionalProperties": false,
+                    "$schema": "http://json-schema.org/draft-07/schema#"
+                }
+            },
+            {
+                "name": "describe_table",
+                "description": "Get detailed information about a specific table",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "baseId": {
+                            "type": "string",
+                            "description": "The ID of the base"
+                        },
+                        "tableId": {
+                            "type": "string",
+                            "description": "The ID or name of the table"
+                        },
+                        "detailLevel": {
+                            "type": "string",
+                            "enum": [
+                                "tableIdentifiersOnly",
+                                "identifiersOnly",
+                                "full"
+                            ],
+                            "default": "full",
+                            "description": "Level of detail to return"
+                        }
+                    },
+                    "required": [
+                        "baseId",
+                        "tableId"
+                    ],
+                    "additionalProperties": false,
+                    "$schema": "http://json-schema.org/draft-07/schema#"
+                }
+            },
+            {
+                "name": "get_record",
+                "description": "Get a specific record by ID",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "baseId": {
+                            "type": "string",
+                            "description": "The ID of the base"
+                        },
+                        "tableId": {
+                            "type": "string",
+                            "description": "The ID or name of the table"
+                        },
+                        "recordId": {
+                            "type": "string",
+                            "description": "The ID of the record"
+                        }
+                    },
+                    "required": [
+                        "baseId",
+                        "tableId",
+                        "recordId"
+                    ],
+                    "additionalProperties": false,
+                    "$schema": "http://json-schema.org/draft-07/schema#"
+                }
+            },
+            {
+                "name": "create_record",
+                "description": "Create a new record in a table",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "baseId": {
+                            "type": "string",
+                            "description": "The ID of the base"
+                        },
+                        "tableId": {
+                            "type": "string",
+                            "description": "The ID or name of the table"
+                        },
+                        "fields": {
+                            "type": "object",
+                            "additionalProperties": {},
+                            "description": "The fields for the new record"
+                        }
+                    },
+                    "required": [
+                        "baseId",
+                        "tableId",
+                        "fields"
+                    ],
+                    "additionalProperties": false,
+                    "$schema": "http://json-schema.org/draft-07/schema#"
+                }
+            },
+            {
+                "name": "update_records",
+                "description": "Update up to 10 records in a table",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "baseId": {
+                            "type": "string",
+                            "description": "The ID of the base"
+                        },
+                        "tableId": {
+                            "type": "string",
+                            "description": "The ID or name of the table"
+                        },
+                        "records": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "fields": {
+                                        "type": "object",
+                                        "additionalProperties": {}
+                                    }
+                                },
+                                "required": [
+                                    "id",
+                                    "fields"
+                                ],
+                                "additionalProperties": false
+                            },
+                            "description": "Array of records to update (max 10)"
+                        }
+                    },
+                    "required": [
+                        "baseId",
+                        "tableId",
+                        "records"
+                    ],
+                    "additionalProperties": false,
+                    "$schema": "http://json-schema.org/draft-07/schema#"
+                }
+            },
+            {
+                "name": "delete_records",
+                "description": "Delete records from a table",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "baseId": {
+                            "type": "string",
+                            "description": "The ID of the base"
+                        },
+                        "tableId": {
+                            "type": "string",
+                            "description": "The ID or name of the table"
+                        },
+                        "recordIds": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "description": "Array of record IDs to delete"
+                        }
+                    },
+                    "required": [
+                        "baseId",
+                        "tableId",
+                        "recordIds"
+                    ],
+                    "additionalProperties": false,
+                    "$schema": "http://json-schema.org/draft-07/schema#"
+                }
+            },
+            {
+                "name": "create_table",
+                "description": "Create a new table in a base",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "baseId": {
+                            "type": "string",
+                            "description": "The ID of the base"
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "The name of the table"
+                        },
+                        "fields": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "additionalProperties": {}
+                            },
+                            "description": "Array of field definitions"
+                        },
+                        "description": {
+                            "type": "string",
+                            "description": "Optional description for the table"
+                        }
+                    },
+                    "required": [
+                        "baseId",
+                        "name",
+                        "fields"
+                    ],
+                    "additionalProperties": false,
+                    "$schema": "http://json-schema.org/draft-07/schema#"
+                }
+            },
+            {
+                "name": "update_table",
+                "description": "Update a table's name or description",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "baseId": {
+                            "type": "string",
+                            "description": "The ID of the base"
+                        },
+                        "tableId": {
+                            "type": "string",
+                            "description": "The ID or name of the table"
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "New name for the table"
+                        },
+                        "description": {
+                            "type": "string",
+                            "description": "New description for the table"
+                        }
+                    },
+                    "required": [
+                        "baseId",
+                        "tableId"
+                    ],
+                    "additionalProperties": false,
+                    "$schema": "http://json-schema.org/draft-07/schema#"
+                }
+            },
+            {
+                "name": "create_field",
+                "description": "Create a new field in a table",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "baseId": {
+                            "type": "string",
+                            "description": "The ID of the base"
+                        },
+                        "tableId": {
+                            "type": "string",
+                            "description": "The ID or name of the table"
+                        },
+                        "nested": {
+                            "type": "object",
+                            "properties": {
+                                "field": {
+                                    "type": "object",
+                                    "additionalProperties": {},
+                                    "description": "Field definition"
+                                }
+                            },
+                            "required": [
+                                "field"
+                            ],
+                            "additionalProperties": false
+                        }
+                    },
+                    "required": [
+                        "baseId",
+                        "tableId",
+                        "nested"
+                    ],
+                    "additionalProperties": false,
+                    "$schema": "http://json-schema.org/draft-07/schema#"
+                }
+            },
+            {
+                "name": "update_field",
+                "description": "Update a field's name or description",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "baseId": {
+                            "type": "string",
+                            "description": "The ID of the base"
+                        },
+                        "tableId": {
+                            "type": "string",
+                            "description": "The ID or name of the table"
+                        },
+                        "fieldId": {
+                            "type": "string",
+                            "description": "The ID of the field"
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "New name for the field"
+                        },
+                        "description": {
+                            "type": "string",
+                            "description": "New description for the field"
+                        }
+                    },
+                    "required": [
+                        "baseId",
+                        "tableId",
+                        "fieldId"
+                    ],
+                    "additionalProperties": false,
+                    "$schema": "http://json-schema.org/draft-07/schema#"
+                }
+            },
+            {
+                "name": "create_comment",
+                "description": "Create a comment on a record",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "baseId": {
+                            "type": "string",
+                            "description": "The ID of the base"
+                        },
+                        "tableId": {
+                            "type": "string",
+                            "description": "The ID or name of the table"
+                        },
+                        "recordId": {
+                            "type": "string",
+                            "description": "The ID of the record"
+                        },
+                        "text": {
+                            "type": "string",
+                            "description": "The comment text"
+                        },
+                        "parentCommentId": {
+                            "type": "string",
+                            "description": "Optional parent comment ID for threaded replies"
+                        }
+                    },
+                    "required": [
+                        "baseId",
+                        "tableId",
+                        "recordId",
+                        "text"
+                    ],
+                    "additionalProperties": false,
+                    "$schema": "http://json-schema.org/draft-07/schema#"
+                }
+            },
+            {
+                "name": "list_comments",
+                "description": "List comments on a record",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "baseId": {
+                            "type": "string",
+                            "description": "The ID of the base"
+                        },
+                        "tableId": {
+                            "type": "string",
+                            "description": "The ID or name of the table"
+                        },
+                        "recordId": {
+                            "type": "string",
+                            "description": "The ID of the record"
+                        },
+                        "pageSize": {
+                            "type": "number",
+                            "description": "Number of comments to return (max 100, default 100)"
+                        },
+                        "offset": {
+                            "type": "string",
+                            "description": "Offset for pagination"
+                        }
+                    },
+                    "required": [
+                        "baseId",
+                        "tableId",
+                        "recordId"
+                    ],
+                    "additionalProperties": false,
+                    "$schema": "http://json-schema.org/draft-07/schema#"
+                }
+            }
+        ]
+    },
+    "jsonrpc": "2.0",
+    "id": 1
+}
