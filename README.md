@@ -8,7 +8,7 @@ AI agent that generates and executes Python code to interact with Airtable using
 User Input → Claude Sonnet 4 → Python Code → Subprocess → Airtable MCP → Results
 ```
 
-**Key benefit**: Process data in code, not in context = 98.7% token efficiency!
+**Key benefit**: Process data in code, not in context.
 
 ## Quick Start
 
@@ -35,16 +35,6 @@ export ANTHROPIC_API_KEY="your-anthropic-api-key"
 
 ```bash
 python cli.py
-```
-
-## Files
-
-```
-agent/
-├── code_executor.py      # Sandboxed code execution
-├── airtable_agent.py     # LangChain agent
-├── cli.py                # Command-line interface
-└── requirements.txt      # Dependencies
 ```
 
 ## Usage
