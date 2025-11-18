@@ -53,15 +53,12 @@ Example Requests:
   "Show me tables in base appXXXXXXXXXXXXXX"
   "Get all active contacts from my CRM base"
   "Find records containing 'john@example.com'"
-  "Create a new contact with name John and email john@example.com"
-  "Analyze my sales data and show top performers"
   "Count records in each table of my base"
 
 Tips:
   • Be specific with base IDs and table names
   • The agent will process large datasets efficiently
-  • Complex operations may take 10-60 seconds
-  • Check generated code before execution
+  • Complex operations may take 10-120 seconds (depends on bases performance)
 """)
     
     async def initialize_agent(self):

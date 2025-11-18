@@ -28,7 +28,7 @@ class AirtableMCPAgent:
             model="claude-sonnet-4-20250514",
             temperature=0
         )
-        self.executor = CodeExecutor(timeout=60)
+        self.executor = CodeExecutor(timeout=120)
         self.mcp_url = mcp_url
         self.conversation_history: List[Dict[str, str]] = []
         

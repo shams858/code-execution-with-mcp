@@ -76,12 +76,11 @@ Output:
 ## Example Queries
 
 ```
-"List all my bases"
-"Show tables in base appXXXXXXXXXXXXXX"
-"Get all active contacts from Contacts table"
-"Search for john@example.com"
-"Create a contact: name=John, email=john@example.com"
-"Analyze sales data and show top 5 performers"
+  "List all my Airtable bases"
+  "Show me tables in base appXXXXXXXXXXXXXX"
+  "Get all active Orders from my CRM base"
+  "Find records containing 'john@example.com'"
+  "Count records in each table of my base"
 ```
 
 ## Commands
