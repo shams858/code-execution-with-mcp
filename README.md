@@ -93,3 +93,6 @@ Output:
 3. **Execute in subprocess** (sandboxed, validated)
 4. **Return results** to user
 
+
+## Full Writeup
+https://medium.com/@shamsul.arefin/building-an-ai-agent-with-mcp-code-execution-from-confusion-to-clarity-6b13fccc8c4b
